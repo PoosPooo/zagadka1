@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona chroniona hasłem</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            text-align: center;
+        }
+        .hidden-content {
+            display: none;
+            text-align: center;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+        .clock-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .clock {
+            width: 150px;
+            height: 150px;
+            border: 2px solid #000;
+            border-radius: 50%;
+            position: relative;
+        }
+        .clock .hand {
+            width: 2px;
+            height: 60px;
+            background: black;
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%) rotate(0deg);
+            transform-origin: bottom;
+        }
+        .clock .center {
+            width: 8px;
+            height: 8px;
+            background: red;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="login-container">
+        <h1>Julian ...</h1>
+        <input type="password" id="password" placeholder="Wpisz hasło" />
+        <button onclick="checkPassword()">Zaloguj się</button>
+        <p class="error" id="error-message"></p>
+    </div>
+
+    <div class="hidden-content" id="protected-content">
+        <div class="clock-container">
+            <h1>What's 9+10</h1>
+            <div class="clock">
+                <div class="hand"></div>
+                <div class="center"></div>
+            </div>
+            <h1>2024</h1>
+        </div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const correctPassword = 'Matuszewski';
+            const userPassword = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+            const loginContainer = document.getElementById('login-container');
+            const protectedContent = document.getElementById('protected-content');
+
+            if (userPassword === correctPassword) {
+                loginContainer.style.display = 'none';
+                protectedContent.style.display = 'block';
+            } else {
+                errorMessage.textContent = 'Nieprawidłowe hasło. Spróbuj ponownie.';
+            }
+        }
+    </script>
+</body>
+</html>
